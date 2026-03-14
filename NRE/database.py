@@ -25,6 +25,7 @@ def init_db():
             user_id INTEGER,
             user_message TEXT,
             bot_response TEXT,
+            state TEXT,
             timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (user_id) REFERENCES users(user_id)
         )
@@ -81,14 +82,14 @@ def get_user_id_by_name(name):
     return result[0] if result else None
 
 
-def log_message_to_db(user_message, bot_response, user_id=None):
+def log_message_to_db(user_message, bot_response, user_id=None, state=None):
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
 
     cursor.execute("""
-        INSERT INTO chat_log (user_id, user_message, bot_response) 
-        VALUES (?, ?, ?)
-    """, (user_id, user_message, bot_response))
+        INSERT INTO chat_log (user_id, user_message, bot_response, state) 
+        VALUES (?, ?, ?, ?)
+    """, (user_id, user_message, bot_response, state))
 
     conn.commit()
     conn.close()
@@ -133,3 +134,27 @@ def get_user_stats(user_id):
             "weather_queries": weather_count
         }
     return None
+
+
+def get_last_user_state(user_id):
+    if user_id is None or user_id < 0:
+        return None
+
+    conn = sqlite3.connect(DB_NAME)
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT state FROM chat_log 
+        WHERE user_id = ? AND state IS NOT NULL 
+        ORDER BY timestamp DESC LIMIT 1
+    """, (user_id,))
+    result = cursor.fetchone()
+
+    conn.close()
+
+    if result and result[0]:
+        from dialog_manager import DialogState
+        return DialogState(result[0])
+
+    from dialog_manager import DialogState
+    return DialogState.START

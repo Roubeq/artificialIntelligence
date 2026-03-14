@@ -1,7 +1,9 @@
+# bot_core.py
 import re
 import random
 from patterns import patterns
-from database import init_db, log_message_to_db, save_user, get_user_id_by_name
+from database import init_db, log_message_to_db, save_user, get_user_id_by_name, get_last_user_state
+from dialog_manager import dialog_manager, DialogState
 
 
 class ChatBot:
@@ -21,6 +23,21 @@ class ChatBot:
 
         if self.user_name and not self.user_id:
             self.user_id = get_user_id_by_name(self.user_name)
+        elif not self.user_id:
+            self.user_id = -1
+
+        current_state = get_last_user_state(self.user_id)
+        if current_state:
+            dialog_manager.set_state(self.user_id, current_state)
+
+        dialog_response = dialog_manager.process_message(self.user_id, message)
+
+        new_state = dialog_manager.get_state(self.user_id)
+        state_value = new_state.value
+
+        if dialog_response is not None:
+            log_message_to_db(message, dialog_response, self.user_id, state_value)
+            return dialog_response
 
         for pattern, handler in self.patterns:
             match = pattern.search(message)
@@ -30,11 +47,11 @@ class ChatBot:
                 else:
                     response = handler(match, self.user_id)
 
-                log_message_to_db(message, response, self.user_id)
+                log_message_to_db(message, response, self.user_id, state_value)
                 return response
 
         response = self.default_response()
-        log_message_to_db(message, response, self.user_id)
+        log_message_to_db(message, response, self.user_id, state_value)
         return response
 
     def default_response(self):
@@ -66,4 +83,5 @@ class ChatBot:
                 break
             except Exception as e:
                 print(f"Бот: Произошла ошибка: {e}")
-                log_message_to_db(user_input, f"Ошибка: {str(e)}", self.user_id)
+                if 'user_input' in locals():
+                    log_message_to_db(user_input, f"Ошибка: {str(e)}", self.user_id)

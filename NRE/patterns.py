@@ -1,8 +1,9 @@
+# patterns.py (только измененные части)
 import re
 from datetime import datetime, timedelta
 import random
 from weather_api import get_weather
-from database import save_user, get_user_id_by_name
+from database import save_user, get_user_id_by_name, log_weather_query
 import spacy
 
 try:
@@ -28,9 +29,7 @@ def extract_city_with_spacy(text):
             if token.ent_type_ in ["LOC", "GPE"]:
                 cities.append(token.lemma_)
 
-
-    city = cities[0]
-    return city
+    return cities[0] if cities else None
 
 
 def extract_date_from_text(text):
@@ -67,45 +66,15 @@ def extract_date_from_text(text):
             next_day = today + timedelta(days=days_ahead)
             return next_day, day_name
 
-    time_phrases = {
-        r'через\s+(\d+)\s+дня?': lambda x: today + timedelta(days=int(x)),
-        r'через\s+(\d+)\s+дней': lambda x: today + timedelta(days=int(x)),
-        r'через\s+неделю': lambda x: today + timedelta(days=7),
-        r'через\s+(\d+)\s+недели?': lambda x: today + timedelta(days=int(x) * 7),
-        r'на\s+следующей\s+неделе': lambda x: today + timedelta(days=7),
-    }
-
-    for pattern, func in time_phrases.items():
-        match = re.search(pattern, text_lower)
-        if match:
-            if match.groups():
-                return func(match.group(1)), f"через {match.group(1)} дня"
-            else:
-                return func(None), pattern.replace(r'\s+', ' ').replace(r'\d+', '')
-
     return today, "сегодня"
+
 
 def handle_greeting(match=None, user_id=None):
     return "Здравствуйте! Чем могу помочь?"
 
+
 def handle_farewell(match=None, user_id=None):
     return "До свидания! Хорошего дня!"
-
-
-def handle_weather(match, user_id=None):
-    city = None
-
-    if (not city or len(city) < 2) and match:
-        full_text = match.string if hasattr(match, 'string') else ""
-        if full_text:
-            spacy_city = extract_city_with_spacy(full_text)
-            if spacy_city:
-                city = spacy_city
-
-
-    weather_info = get_weather(city)
-
-    return weather_info
 
 
 def handle_weather_simple(match, user_id=None):
@@ -137,10 +106,22 @@ def handle_weather_simple(match, user_id=None):
     print(f"  🌆 Запрашиваю погоду для города: {city}, дата: {date_desc}")
     weather_info = get_weather(city)
 
+    try:
+        temp_match = re.search(r'Температура:\s*([-+]?\d+)', weather_info)
+        wind_match = re.search(r'Ветер:\s*([\d.]+)', weather_info)
+
+        if temp_match and wind_match and user_id:
+            temperature = float(temp_match.group(1))
+            wind_speed = float(wind_match.group(1))
+            log_weather_query(user_id, city, temperature, wind_speed)
+    except Exception as e:
+        print(f"Ошибка при логировании погоды: {e}")
+
     if date_desc != "сегодня":
         weather_info = f"📅 {date_desc.capitalize()}:\n" + weather_info
 
     return weather_info
+
 
 def handle_name(match, bot, user_id=None):
     user_name = match.group(1)
@@ -149,13 +130,16 @@ def handle_name(match, bot, user_id=None):
     bot.user_id = user_id
     return f"Приятно познакомиться, {user_name}!"
 
+
 def handle_time(match=None, user_id=None):
     current_time = datetime.now().strftime("%H:%M")
     return f"Сейчас {current_time}"
 
+
 def handle_date(match=None, user_id=None):
     current_date = datetime.now().strftime("%d.%m.%Y")
     return f"Сегодня {current_date}"
+
 
 def handle_YES_NO(match=None, user_id=None):
     responses = [
@@ -171,36 +155,40 @@ def handle_YES_NO(match=None, user_id=None):
     ]
     return random.choice(responses)
 
+
 def handle_help(match=None, user_id=None):
     return """Я могу ответить на следующие запросы:
 - Приветствие (привет, здравствуй, добрый день)
 - Прощание (пока, до свидания)
-- Погода в [город]
+- Погода (например: "Какая погода в Москве?" или просто "Какая погода?")
 - Меня зовут [имя]
 - Который час?
 - Какая дата?
-- Помощь
+- Моя статистика
 - Завтра идти на пары?
-- Пока"""
+- Помощь
+
+Также я поддерживаю диалог: если спросить "Какая погода?" без города,
+я уточню город в следующем сообщении."""
+
 
 def handle_stats(match=None, user_id=None):
-    """Обработка запроса статистики"""
     from database import get_user_stats
     if user_id:
         stats = get_user_stats(user_id)
         if stats:
             return (f"📊 Ваша статистика:\n"
-                   f"Имя: {stats['name']}\n"
-                   f"Первый визит: {stats['first_seen']}\n"
-                   f"Последний визит: {stats['last_seen']}\n"
-                   f"Всего сообщений: {stats['messages_count']}\n"
-                   f"Запросов погоды: {stats['weather_queries']}")
+                    f"Имя: {stats['name']}\n"
+                    f"Первый визит: {stats['first_seen']}\n"
+                    f"Последний визит: {stats['last_seen']}\n"
+                    f"Всего сообщений: {stats['messages_count']}\n"
+                    f"Запросов погоды: {stats['weather_queries']}")
     return "Статистика недоступна"
+
 
 patterns = [
     (re.compile(r"^(привет|здравствуй|добрый день|здравствуйте)$", re.IGNORECASE), handle_greeting),
     (re.compile(r"^(пока|до свидания|всего доброго)$", re.IGNORECASE), handle_farewell),
-    (re.compile(r".*", re.IGNORECASE), handle_weather_simple),
     (re.compile(r"меня зовут ([а-яА-Яa-zA-Z]+)", re.IGNORECASE), handle_name),
     (re.compile(r"(который час|сколько времени|время)", re.IGNORECASE), handle_time),
     (re.compile(r"(какая дата|какое сегодня число|дата)", re.IGNORECASE), handle_date),
