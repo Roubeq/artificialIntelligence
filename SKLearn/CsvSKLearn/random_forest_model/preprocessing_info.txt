@@ -1,0 +1,25 @@
+Preprocessing Information
+========================================
+
+Use spaCy: True
+SpaCy model: ru_core_news_sm
+Preprocessing steps:
+  - Lowercase
+  - Remove stop words
+  - Remove punctuation
+  - Lemmatization
+  - Remove short words (len < 3)
+
+Model parameters:
+  - n_estimators: 200
+  - max_depth: 20
+  - min_samples_split: 5
+  - min_samples_leaf: 2
+  - class_weight: balanced
+
+Vectorizer parameters:
+  - max_features: 5000
+  - ngram_range: (1, 2)
+  - min_df: 2
+  - max_df: 0.95
+  - sublinear_tf: True
