@@ -1,0 +1,351 @@
+text,intent
+какая сейчас погода,weather_city_only
+завтра пары,schedule
+покажи статистику?,stats
+казань температура,weather
+мое имя сергей,set_name
+счастливо оставаться,farewell
+я александр,set_name
+приветик как жизнь,greeting
+я алексей а ты,set_name
+активность,stats
+завтра учиться!,schedule
+добрый день бот,greeting
+погода москва,weather
+что с погодой в москве,weather
+мои запросы к боту,stats
+найду ли я любовь,yes_no
+сколько раз я обращался,stats
+учиться ли дальше,yes_no
+увидимся,farewell
+информация обо мне,stats
+подскажи,help
+статистика моих сообщений,stats
+стоит ли ждать,yes_no
+скажи погоду,weather_city_only
+моя статистика?,stats
+представьтесь как сергей,set_name
+здорово,greeting
+меня зовут александр,set_name
+стоит ли инвестировать,yes_no
+хей привет,greeting
+холодно в москве,weather
+стоит ли начинать,yes_no
+завтра идти на пары?,schedule
+мои сообщения,stats
+ростов-на-дону погода,weather
+погода сейчас,weather_city_only
+что такое днк,unknown
+прогноз погоды,weather_city_only
+будет ли встреча,yes_no
+температура в санкт-петербурге,weather
+пока,farewell
+здрасьте,greeting
+привет,greeting
+что будет завтра,unknown
+называйте меня таней,set_name
+учиться ли завтра,schedule
+самара погода,weather
+завтра идти на пары!,schedule
+лучший фильм,unknown
+какая температура на улице,weather_city_only
+узнай погоду,weather_city_only
+примут ли меня на работу,yes_no
+как тебя использовать,help
+погода в санкт-петербурге сегодня,weather
+что я спрашивал,stats
+есть ли жизнь на марсе,unknown
+помоги,help
+как похудеть,unknown
+сбудутся ли мечты,yes_no
+список команд,help
+до скорого,farewell
+что такое нейросети,unknown
+почему люди спят,unknown
+моя статистика,stats
+температура сейчас,weather_city_only
+меня повысят на работе,yes_no
+какая погода в москве,weather
+до скорой встречи,farewell
+мои действия,stats
+как работает мозг,unknown
+на улице как,weather_city_only
+мои данные покажи,stats
+завтра есть пары,schedule
+будет ли завтра дождь,yes_no
+как найти друзей,unknown
+владивосток погода,weather
+успею ли я сделать проект,yes_no
+мое имя дмитрий,set_name
+погодка как,weather_city_only
+что посмотреть,unknown
+good morning,greeting
+надо ли идти на пары,schedule
+хеллоу,greeting
+как сделать сайт,unknown
+сколько сообщений я отправил,stats
+свидимся,farewell
+будет ли тепло,yes_no
+смысл жизни,unknown
+завтра учиться?,schedule
+можно просто миша,set_name
+good evening,greeting
+будет ли завтра солнце,yes_no
+добрый день господа,greeting
+привет бот,greeting
+до свидания,farewell
+какая погода в алматы,weather
+покажи погоду,weather_city_only
+будут ли уроки завтра,schedule
+завтра в школу,schedule
+доброго здоровья,greeting
+меня зовут михаил,set_name
+меня звать алексей,set_name
+расскажи о погоде,weather_city_only
+что такое счастье,unknown
+стоит ли надеяться,yes_no
+вернется ли он,yes_no
+погода в москве сегодня,weather
+температура за окном,weather_city_only
+какая температура в киеве,weather
+выиграю ли я,yes_no
+завтра идти в институт,schedule
+hi,greeting
+идти на учебу,schedule
+что такое время,unknown
+какая сегодня температура,weather_city_only
+ну что там с погодой,weather_city_only
+hey,greeting
+расскажи о своих возможностях,help
+я анна,set_name
+привет дружище,greeting
+ну пока,farewell
+я екатерина,set_name
+как ты можешь помочь,help
+зовут меня ольга,set_name
+где находится эрмитаж,unknown
+здрасте,greeting
+команды,help
+что ты можешь,help
+я татьяна,set_name
+стоит ли брать кредит,yes_no
+что ты можешь сделать,help
+рим сколько градусов,weather
+помогите,help
+эй здравствуй,greeting
+температура воздуха,weather_city_only
+есть ли пары завтра,schedule
+мои показатели,stats
+счастливо,farewell
+прогноз на сегодня,weather_city_only
+позвонят ли мне,yes_no
+я алексей,set_name
+что с погодой,weather_city_only
+почему мы мечтаем,unknown
+здравствуйте пожалуйста,greeting
+зовите меня мария,set_name
+я мария,set_name
+статистика,stats
+помоги разобраться,help
+привееет,greeting
+бывайте,farewell
+завтра идти на учебу или нет,schedule
+есть ли занятия завтра,schedule
+меня зовут мария,set_name
+прощай,farewell
+температура в москве,weather
+good afternoon,greeting
+погода сегодня,weather_city_only
+пока пока,farewell
+что ты умеешь,help
+удачи,farewell
+екатеринбург погода,weather
+помощь,help
+мадрид погода сегодня,weather
+покеда,farewell
+температура на сегодня,weather_city_only
+пойдет ли снег,yes_no
+получу ли я ответ,yes_no
+нужна помощь,help
+какая погода в лондоне,weather
+что на улице,weather_city_only
+справка,help
+сколько будет 2+2,unknown
+статистика!,stats
+все пока,farewell
+сколько раз я писал,stats
+привет!!,greeting
+лучшая книга,unknown
+сколько сегодня градусов,weather_city_only
+возможности,help
+какие есть команды,help
+как работать,help
+будет ли успех,yes_no
+мое почтение,greeting
+что я могу спросить,help
+всем привет,greeting
+пары завтра будут,schedule
+будут ли отношения,yes_no
+прощаюсь с вами,farewell
+что такое машинное обучение,unknown
+есть ли завтра учеба,schedule
+менять ли работу,yes_no
+приветствую,greeting
+сколько градусов за окном,weather_city_only
+что ты умеешь бот,help
+прощай бот,farewell
+холодно или тепло,weather_city_only
+будут ли пары завтра!,schedule
+пока пока бот,farewell
+меня зовут татьяна,set_name
+завтра занятия будут,schedule
+что там с погодой,weather_city_only
+ну здарова,greeting
+завтра занятия,schedule
+будут занятия завтра,schedule
+увидимся позже,farewell
+учиться завтра,schedule
+моя статистика!,stats
+расскажи про космос,unknown
+ждут ли меня перемены,yes_no
+здравствуйте,greeting
+мои данные,stats
+есть ли пары завтра!,schedule
+как выучить python,unknown
+отчет по мне,stats
+меня зовут ольга,set_name
+здравствуйте!!!,greeting
+сколько звезд на небе,unknown
+завтра в универ,schedule
+завтра на учебу,schedule
+давай,farewell
+я ольга,set_name
+погода на сегодня,weather_city_only
+сдам ли я зачет,yes_no
+я александр,set_name
+какие команды,help
+как стать богатым,unknown
+моя история,stats
+идти ли завтра на учебу,schedule
+как программировать,unknown
+меня зовут анна,set_name
+как выучить английский,unknown
+функции бота,help
+будут ли пары,schedule
+покажи мои данные,stats
+сколько градусов в киеве,weather
+как доехать до центра,unknown
+что я делал,stats
+погода какая,weather_city_only
+покажи мою активность,stats
+доброе утро,greeting
+расскажи что ты умеешь,help
+сочи температура,weather
+погода в минске сегодня,weather
+какая погода будет,weather_city_only
+погода в новосибирске,weather
+нужно ли идти на пары завтра,schedule
+бывай,farewell
+стоит ли менять работу,yes_no
+токио погода,weather
+как работает интернет,unknown
+как пользоваться,help
+есть ли пары завтра?,schedule
+инструкция,help
+мы встретимся завтра,yes_no
+сколько я написал,stats
+что по погоде,weather_city_only
+до завтра бот,farewell
+погода в минске,weather
+расскажи о себе,help
+прощайте,farewell
+какая погода,weather_city_only
+статистика по мне,stats
+какая сегодня погода,weather_city_only
+как появилась вселенная,unknown
+ну все пока,farewell
+сколько градусов в алматы,weather
+всего хорошего,farewell
+меня зовут екатерина,set_name
+будет ли хороший день,yes_no
+погода на завтра,weather_city_only
+что делать,help
+помощь бот,help
+какая погода в минске,weather
+покажи статистику!,stats
+получится ли у меня,yes_no
+hi there,greeting
+до завтра,farewell
+моя активность,stats
+как стать программистом,unknown
+кто такой пушкин,unknown
+покажи что ты умеешь,help
+завтра учиться,schedule
+я дмитрий,set_name
+что я спрашивал ранее,stats
+меня зовут сергей,set_name
+наталья я,set_name
+погода в париже,weather
+что с погодой в питере,weather
+здравствуй,greeting
+как заработать деньги,unknown
+сколько градусов в минске,weather
+какая температура,weather_city_only
+меня зовут алексей,set_name
+минск температура,weather
+всего доброго бот,farewell
+hello there,greeting
+что такое искусственный интеллект,unknown
+будут ли пары завтра?,schedule
+я сергей,set_name
+буду ли я богат,yes_no
+давай до встречи,farewell
+прогноз погоды на сегодня,weather_city_only
+пары завтра или нет,schedule
+амстердам температура,weather
+в чем твоя помощь,help
+расскажи шутку,unknown
+меня иван зовут,set_name
+hello,greeting
+здравствуйте я к вам,greeting
+какая температура сейчас,weather_city_only
+киев погода сегодня,weather
+как с тобой общаться,help
+всего доброго,farewell
+покажи команды,help
+пекин температура,weather
+стоит ли рисковать,yes_no
+покажи статистику,stats
+почему я грущу,unknown
+завтра в университет,schedule
+твои возможности,help
+я наталья,set_name
+хорошего дня,farewell
+статистика?,stats
+что такое блокчейн,unknown
+привет как дела,greeting
+я иван,set_name
+пермь температура,weather
+зовите меня екатерина,set_name
+я екатерина,set_name
+статистика пользователя,stats
+подскажите,help
+будут ли пары завтра,schedule
+найду ли я работу,yes_no
+мои запросы,stats
+поездка удастся,yes_no
+покажи мою статистику,stats
+удачи бот,farewell
+что умеешь делать,help
+статистика использования,stats
+до связи,farewell
+уфа температура,weather
+переезжать ли,yes_no
+ладно пока,farewell
+приветствую вас,greeting
+купить ли машину,yes_no
+до встречи,farewell
+меня зовут дмитрий,set_name
+завтра идти на пары,schedule
+погода,weather_city_only
+давай пока,farewell

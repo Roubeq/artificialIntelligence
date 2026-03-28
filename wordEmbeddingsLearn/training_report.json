@@ -1,0 +1,29 @@
+{
+  "dataset_size": 350,
+  "class_distribution": {
+    "weather_city_only": 35,
+    "schedule": 35,
+    "stats": 35,
+    "weather": 35,
+    "set_name": 35,
+    "farewell": 35,
+    "greeting": 35,
+    "yes_no": 35,
+    "help": 35,
+    "unknown": 35
+  },
+  "models_results": {
+    "random_forest": {
+      "train_accuracy": 0.8964285714285715,
+      "test_accuracy": 0.6,
+      "n_classes": 10,
+      "n_samples": 350,
+      "n_features": 300,
+      "model_type": "random_forest"
+    }
+  },
+  "best_model": {
+    "type": "random_forest",
+    "test_accuracy": 0.6
+  }
+}
