@@ -1,0 +1,4 @@
+coqui-tts>=0.24.0
+transformers<5
+fsspec<=2026.2.0,>=2023.1.0
+setuptools<82
